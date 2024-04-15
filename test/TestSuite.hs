@@ -1,15 +1,18 @@
 module Main where
 
-import           Parse
-import           Test.HUnit
-import           Data.Function
+import Parse
+import Test.HUnit
 
-test1 :: Test
-test1 = TestCase (assertEqual "Table class name" expectedTable tableClass)
-  where
-    expectedTable = "va-table va-table-full va-table-shaded sortable"
+thirdPerkTest :: String -> Test
+thirdPerkTest html =
+  TestCase
+    (assertEqual "Third perk name" expectedThirdPerk actualThirdPerk)
+ where
+  expectedThirdPerk = "Gun Nut"
+  actualThirdPerk = name $ extractTablePerks html !! 2
 
 main :: IO ()
 main = do
-  _ <- runTestTT (TestList [test1])
+  html <- readFile "perks.html"
+  _ <- runTestTT (TestList [thirdPerkTest html])
   return ()

@@ -1,9 +1,8 @@
 module Main where
 
-import           Parse
+import Parse
 
 main :: IO ()
 main = do
   html <- readFile "perks.html"
-  let perksTable = extractTable html
-  putStrLn perksTable
+  putStrLn "hello world"
